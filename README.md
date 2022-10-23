@@ -5,7 +5,6 @@ https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-sprin
 ## Table of Contents
 
 * [REST HTTP Spring Boot Example](#rest-http-spring-boot-example)
-    * [Prerequisites](#prerequisites)
     * [Deploying application on OpenShift using Dekorate](#deploying-application-on-openshift-using-dekorate)
     * [Deploying application on OpenShift using Helm](#deploying-application-on-openshift-using-helm)
     * [Deploying application on Kubernetes using Helm](#deploying-application-on-kubernetes-using-helm)
@@ -14,10 +13,6 @@ https://appdev.openshift.io/docs/spring-boot-runtime.html#mission-http-api-sprin
     * [Running Tests on OpenShift using Helm](#running-tests-on-openshift-using-helm)
     * [Running Tests on Kubernetes with External Registry](#running-tests-on-kubernetes-with-external-registry)
     * [Running Tests on Kubernetes with Helm](#running-tests-on-kubernetes-using-helm)
-
-## Prerequisites
-
-- JDK 11+ installed with JAVA_HOME configured appropriately
 
 ## Deploying application on OpenShift using Dekorate
 
@@ -65,13 +60,6 @@ helm uninstall rest-http
 
 ```
 ./run_tests_with_dekorate.sh
-```
-
-Alternativelly, tests can be executed against a specific Spring Boot or Dekorate version by passing the
-version as a `-D<variable property name>=value` parameter. For instance overriding both the Spring Boot and the Dekorate versions using their corresponding version properties is done the following way:
-
-```bash
-./run_tests_with_dekorate.sh -Dspring-boot.version=2.7.3 -Ddekorate.version=2.11.1
 ```
 
 ## Running Tests on OpenShift using S2i from Source
