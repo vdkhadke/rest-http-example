@@ -17,20 +17,21 @@
 package dev.snowdrop.example;
 
 import java.net.URL;
-import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
-import org.arquillian.cube.openshift.impl.enricher.RouteURL;
-import org.jboss.arquillian.junit.Arquillian;
-import org.junit.runner.RunWith;
 
-@RunWith(Arquillian.class)
-public class OpenShiftIT extends AbstractExampleApplicationTest {
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
-    @AwaitRoute(path = "/health")
-    @RouteURL("${app.name}")
-    private URL baseURL;
+import io.dekorate.testing.annotation.Inject;
+import io.dekorate.testing.openshift.annotation.OpenshiftIntegrationTest;
+
+@EnabledIfSystemProperty(named = "unmanaged-test", matches = "true")
+@OpenshiftIntegrationTest(deployEnabled = false, buildEnabled = false, pushEnabled = false)
+public class UnmanagedOpenShiftIT extends AbstractExampleApplicationTest {
+
+    @Inject
+    private URL appUrl;
 
     @Override
     public String baseURI() {
-        return baseURL.toString();
+        return appUrl.toString();
     }
 }

@@ -13,22 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package dev.snowdrop.example;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import java.net.URL;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LocalTest extends AbstractExampleApplicationTest {
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
-    @Value("${local.server.port}")
-    private int port;
+import io.dekorate.testing.annotation.Inject;
+import io.dekorate.testing.openshift.annotation.OpenshiftIntegrationTest;
+
+@DisabledIfSystemProperty(named = "unmanaged-test", matches = "true")
+@OpenshiftIntegrationTest
+public class ManagedOpenShiftIT extends AbstractExampleApplicationTest {
+
+    @Inject
+    private URL appUrl;
 
     @Override
     public String baseURI() {
-        return String.format("http://localhost:%d", port);
+        return appUrl.toString();
     }
 }
