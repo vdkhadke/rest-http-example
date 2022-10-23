@@ -1,11 +1,11 @@
 schemaVersion: 2.2.0
 metadata:
-  name: java-springboot
+  name: rest-http-example
   version: 1.1.0
   attributes:
     alpha.dockerimage-port: 8081
-  displayName: Java Spring Boot
-  description: Java Spring Boot using Maven
+  displayName:  rest-http-example
+  description:  rest-http-example
   tags: ["Java", "Spring"]
   projectType: "springboot"
   language: "java"
@@ -17,7 +17,7 @@ parent:
 components:
   - name: outerloop-build
     image:
-      imageName: java-springboot-image:latest
+      imageName:  rest-http-example:latest
       dockerfile:
         uri: docker/Dockerfile
         buildContext: .
